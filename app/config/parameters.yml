@@ -1,0 +1,16 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: d80f2176bebd0029bf3b2b50e20cde29da4b87df
+    products_upload_dir: '%kernel.root_dir%/../web/uploads/products/'
+    domain_admin: admin.symfony.local
+    domain_consumer: symfony.local
+    domain_api: api.symfony.local
