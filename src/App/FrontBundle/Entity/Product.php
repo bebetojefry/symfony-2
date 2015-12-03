@@ -326,7 +326,7 @@ class Product
         self::$uploadDir = $dir;
     }
     
-     /**
+    /**
      * @ORM\PostUpdate()
      */
     public function upload()
