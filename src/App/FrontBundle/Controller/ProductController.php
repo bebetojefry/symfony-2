@@ -16,7 +16,7 @@ class ProductController extends Controller {
         $form = $this->createForm(new ProductType(), new Product());
         $code = FormHelper::FORM;
         if($request->isMethod('POST')){
-            $form->submit($request);
+            $form->handleRequest($request);
             if($form->isValid()){
                 $product = $form->getData();
                 $product->setUser($this->getUser());
@@ -60,7 +60,7 @@ class ProductController extends Controller {
         $code = FormHelper::FORM;
         
         if($request->isMethod('POST')){
-            $form->submit($request);
+            $form->handleRequest($request);
             if($form->isValid()){
                 $product = $form->getData();
                 $product->setUser($this->getUser());
