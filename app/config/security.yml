@@ -42,7 +42,7 @@ security:
                 key:      "%secret%"
                 lifetime: 604800 # one week in seconds
                 path: /
-                domain: ~
+                domain: "%domain_admin%"
   
         api:  
             pattern: ^/
@@ -74,7 +74,7 @@ security:
                 key:      "%secret%"
                 lifetime: 604800 # one week in seconds
                 path: /
-                domain: ~
+                domain: "%domain_consumer%"
                 
     access_control:
       - { path: ^/view/([a-zA-Z]+), roles: IS_AUTHENTICATED_ANONYMOUSLY }

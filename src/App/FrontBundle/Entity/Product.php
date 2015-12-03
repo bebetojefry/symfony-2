@@ -69,11 +69,11 @@ class Product
      */
     private $quantity;
 
-	/**
+    /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255)
-	 * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/png" })
+     * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/png" })
      */
     private $image;
 
