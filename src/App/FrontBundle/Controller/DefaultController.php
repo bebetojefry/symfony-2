@@ -91,12 +91,12 @@ class DefaultController extends Controller {
         return $this->render('AppFrontBundle:Default:index.html.twig', array('form' => $form->createView(), 'id' => $id));*/
         
         //mongoDB
-//        $dm = $this->get('doctrine_mongodb')->getManager();
-//        $user = new MongoUser();
-//        $user->setFirstname('Bebeto');
-//        $user->setLastname('Jefry');
-//        $dm->persist($user);
-//        $dm->flush();
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $user = new MongoUser();
+        $user->setFirstname('Bebeto');
+        $user->setLastname('Jefry');
+        $dm->persist($user);
+        $dm->flush();
         
         return $this->render('AppFrontBundle:Default:index.html.twig');
         
