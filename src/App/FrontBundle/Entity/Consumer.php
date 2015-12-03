@@ -11,7 +11,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\FrontBundle\Entity\UserRepository")
  */
 class Consumer extends User
-{    
+{  
+    /**
+     * Constructor
+     */
+    public function __construct($fname = '', $lname = '', $gender = '') {
+        $this->setFirstname($fname);
+        $this->setLastname($lname);
+        $this->setGender($gender);
+        parent::__construct();
+    }
+    
     /**
      * Get roles
      *
