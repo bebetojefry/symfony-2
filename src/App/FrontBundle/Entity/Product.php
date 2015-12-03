@@ -279,7 +279,7 @@ class Product
      */
     public function setImage($image)
     {
-        if($this->temp == null){
+        if(is_string($this->image)){
             $this->temp = $this->image;
         }
         
@@ -327,21 +327,19 @@ class Product
     }
     
     /**
-     * @ORM\PostUpdate()
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
      */
     public function upload()
     {
         if($file = $this->getImage()) {
-            if($this->temp != null){
+            if(is_string($this->temp)){
                 $product_image = self::$uploadDir . $this->temp;
-                if(file_exists($product_image)){
-                    @unlink($product_image);
-                }
+                @unlink($product_image);
             }
-        
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move(self::$uploadDir, $fileName);
-            $this->setImage($fileName);
+            $this->setImage(basename($fileName));
         } else {
             $this->setImage($this->temp);
         }
@@ -353,9 +351,7 @@ class Product
     public function removeImage()
     {
         $product_image = self::$uploadDir . $this->getImage();
-        if(file_exists($product_image)){
-            @unlink($product_image);
-        }
+        @unlink($product_image);
     }
     
 }

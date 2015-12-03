@@ -26,8 +26,6 @@ class UserListener
             $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity);
             $password = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
             $entity->setPassword($password);
-        } else if($entity instanceof Product){
-            $entity->setImage(basename($entity->getImage()));
         }
     }
     

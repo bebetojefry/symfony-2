@@ -13,6 +13,7 @@ Use App\FrontBundle\Form\ProductType;
 class ProductController extends Controller {
     
     public function newAction(Request $request){
+        $dm = $this->getDoctrine()->getManager();
         $form = $this->createForm(new ProductType(), new Product());
         $code = FormHelper::FORM;
         if($request->isMethod('POST')){
@@ -20,12 +21,6 @@ class ProductController extends Controller {
             if($form->isValid()){
                 $product = $form->getData();
                 $product->setUser($this->getUser());
-                if($file = $product->getImage()) {
-                    $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-                    $file->move($this->getParameter('products_upload_dir'), $fileName);
-                    $product->setImage($fileName);
-                }
-                $dm = $this->getDoctrine()->getManager();
                 $dm->persist($product);
                 $dm->flush();
                 $this->get('session')->getFlashBag()->add('success', 'product.msg.created');
