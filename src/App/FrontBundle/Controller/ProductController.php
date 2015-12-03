@@ -45,7 +45,8 @@ class ProductController extends Controller {
     public function editAction($id, Request $request){
         // decrypt id and fetch product object
         $id = $this->get('nzo_url_encryptor')->decrypt($id);
-        $repo = $this->getDoctrine()->getManager()->getRepository('AppFrontBundle:Product');
+        $dm = $this->getDoctrine()->getManager();
+        $repo = $dm->getRepository('AppFrontBundle:Product');
         $product = $repo->find($id);
         
         // ACL access validation
@@ -64,18 +65,6 @@ class ProductController extends Controller {
             if($form->isValid()){
                 $product = $form->getData();
                 $product->setUser($this->getUser());
-                if($file = $product->getImage()) {
-                    $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-                    $file->move($this->getParameter('products_upload_dir'), $fileName);
-                    $product->setImage($fileName);
-                    // remove old product image
-                    if(file_exists($product_old_image)){
-                        @unlink($product_old_image);
-                    }
-                } else {
-                    $product->setImage($productImg);
-                }
-                $dm = $this->getDoctrine()->getManager();
                 $dm->persist($product);
                 $dm->flush();
                 $this->get('session')->getFlashBag()->add('success', 'product.msg.updated');
@@ -97,13 +86,10 @@ class ProductController extends Controller {
         $dm = $this->getDoctrine()->getManager();
         $repo = $dm->getRepository('AppFrontBundle:Product');
         $product = $repo->find($id);
-        $product_image = $this->getParameter('products_upload_dir') . $product->getImage();
+        
         $dm->remove($product);
         $dm->flush();
-        // remove product image
-        if(file_exists($product_image)){
-            @unlink($product_image);
-        }
+        
         $this->get('session')->getFlashBag()->add('success', 'product.msg.removed');
         return new Response(json_encode(array('code' => FormHelper::REFRESH)));
     }

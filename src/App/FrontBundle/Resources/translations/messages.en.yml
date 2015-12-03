@@ -56,6 +56,10 @@ globals:
     confirm: Confirmation
     yes: Yes
     no: No
+    error:
+        something: Some thing gone wrong
+    session:
+        expired: Your session expired
 table:
     lengthMenu: "Display _MENU_ records per page"
     zeroRecords: "Nothing found - sorry"

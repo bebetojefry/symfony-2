@@ -53,6 +53,10 @@ globals:
     confirm: Bestätigung
     yes: Ja
     no: Nein
+    error:
+        something: Etwas, was schief gelaufen ist
+    session:
+        expired: Ihre Sitzung abgelaufen
 table:
     lengthMenu: "Display _MENU_ Datensätze pro Seite"
     zeroRecords: "Im Moment gibt - sorry"

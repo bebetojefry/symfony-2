@@ -11,11 +11,16 @@ use App\FrontBundle\Entity\User;
  *
  * @ORM\Table(name="Products")
  * @ORM\Entity(repositoryClass="App\FrontBundle\Entity\ProductRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Product
 {
     const NO_ACCESS = 'You dont have access to this product.';
 
+    protected static $uploadDir;
+    
+    protected $temp;
+    
     /**
      * @var integer
      *
@@ -274,6 +279,10 @@ class Product
      */
     public function setImage($image)
     {
+        if($this->temp == null){
+            $this->temp = $this->image;
+        }
+        
         $this->image = $image;
 
         return $this;
@@ -311,4 +320,42 @@ class Product
     {
         return $this->private;
     }
+    
+    public static function setUploadDir($dir)
+    {
+        self::$uploadDir = $dir;
+    }
+    
+     /**
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if($file = $this->getImage()) {
+            if($this->temp != null){
+                $product_image = self::$uploadDir . $this->temp;
+                if(file_exists($product_image)){
+                    @unlink($product_image);
+                }
+            }
+        
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(self::$uploadDir, $fileName);
+            $this->setImage($fileName);
+        } else {
+            $this->setImage($this->temp);
+        }
+    }
+    
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeImage()
+    {
+        $product_image = self::$uploadDir . $this->getImage();
+        if(file_exists($product_image)){
+            @unlink($product_image);
+        }
+    }
+    
 }
