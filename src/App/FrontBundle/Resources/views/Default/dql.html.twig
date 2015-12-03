@@ -1,0 +1,20 @@
+{% extends "AppFrontBundle::layout2.html.twig" %}
+{% block title %}Admin Home - DQL{% endblock %}
+{% block style %}
+    {% stylesheets '@AppFrontBundle/Resources/public/css/*' %}
+        <link href="{{ asset_url }}" rel="stylesheet">
+    {% endstylesheets %}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="dql">
+            <form name="frmdql" id="frmdql" method="POST" action="">
+                <textarea name="dql" id="dql">{{ app.request.get('dql') }}</textarea>
+                <input type="submit" name="btndql" value="Execute" />
+            </form>
+            <div class="result">
+                <pre>{{ dump(result) }}</pre>
+            </div>
+        </div>
+    </div>
+{% endblock %}

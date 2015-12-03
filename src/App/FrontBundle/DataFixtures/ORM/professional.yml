@@ -1,0 +1,19 @@
+App\FrontBundle\Entity\Professional:
+    user_pro_1:
+        firstname: Bebeto
+        lastname: Jefry
+        gender: 1
+        phone: 9747143513
+        username: admin
+        password: admin
+        locale: de
+        status: true
+    user_pro_2:
+        firstname: Bebeto
+        lastname: Jefry
+        gender: 1
+        phone: 9747143513
+        username: bebeto
+        password: bebeto12345
+        locale: en
+        status: true

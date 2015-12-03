@@ -1,0 +1,280 @@
+@import 'variables.less';
+@import 'mixins.less';
+
+body {
+
+    margin: 0 auto;
+
+    .container {
+        color: @my_variable;
+        background-color: @gray + #111;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        .spacing(10px, 10px, 15px);
+        color: saturate(@base, 5%);
+        .boxShadow(0 0 5px, lighten(@gray, 10%));
+        .bordered(@grayLight);
+        .boxRadius() !important;
+    }
+
+    .box2 {
+        .boxShadow(@color: lighten(@gray, 10%), @style: '0 0 5px');
+    }
+
+    .class {
+        .pattern(@switch; @grayDarker);
+    }
+
+    #frmlogin {
+        width: 285px;
+        margin: 10px auto;
+        border: 1px solid #CCC;
+    }
+    #frmlogin .messages {
+        display: inline;
+        margin-left: 15px;
+        color: red;
+    }
+
+    .header {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 0;
+        border-bottom: 1px solid #CCC;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .header .welcome {
+        float: left;
+    }
+    .header .lang_container {
+        float: right;
+        margin-right: 15px;
+    }
+    .header .lang_container a {
+        margin-right: 10px;
+        display: inline-block;
+        height: 20px;
+    }
+    .header .lang_container a.active_locale {
+        -webkit-box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        -moz-box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+    }
+    .header .lang_container a img {
+        width: 20px;
+    }
+
+    ul.main_menu {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 20px;
+        float: left;
+    }
+
+    ul.main_menu li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    ul.main_menu li a {
+        color: #333;
+    }
+    .header .logout {
+        float: right;
+        color: #333;
+    }
+    .flasbag_messages {
+        width: 98%;
+        float: left;
+        padding: 10px;
+    }
+    .flasbag_messages .notice {
+        width: 98%;
+        border: 1px solid #CCC;
+        background-color: #c0fcb3;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .flasbag_messages .notice span {
+        display: inline;
+    }
+    .flasbag_messages .error {
+        width: 98%;
+        border: 1px solid #CCC;
+        background-color: #ffaa9b;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .flasbag_messages .error span {
+        display: inline-block;
+    }
+    .products {
+        width: 70%;
+        display: inline-block;
+    }
+    .products ul.product_list {
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .products ul.product_list li {
+        width: 150px;
+        height: 200px;
+        float: left;
+        margin: 7px;
+        border: 1px solid #CCC;
+        position: relative;
+        -webkit-box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        -moz-box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        border-radius: 5px;
+    }
+    .products ul.product_list li img {
+        width: 140px;
+        height: 150px;
+        padding: 5px;
+    }
+    .products ul.product_list li a.remove {
+        text-decoration: none;
+        width: 15px;
+        height: 13px;
+        border-radius: 10px;
+        color: #990000;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        font-size: 10px;
+        text-align: center;
+        padding-top: 2px;
+    }
+    .products ul.product_list li a.remove:hover {
+        background-color: #990000;
+        color: #FFF;
+    }
+    .products ul.product_list li .price {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 20px;
+        background-color: #990000;
+        color: #FFF;
+        text-align: center;
+    }
+    .products ul.product_list li .pname {
+        width: 100%;
+        float: left;
+        padding: 2px;
+        text-align: center;
+        color: #AAA;
+    }
+    .products ul.product_list li .pname a {
+        text-decoration: underline;
+        color: #AAA;
+    }
+    .product_form {
+        width: 27%;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 25px;
+        border: 1px solid #CCC;
+        -webkit-box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        -moz-box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+        box-shadow: 0px 0px 21px 0px rgba(168,168,168,1);
+    }
+    #container {
+        width: 1000px;
+        margin: 0 auto;
+    }
+    form .field_group {
+        width: 100%;
+        display: inline-block;
+        padding: 10px;
+    }
+    form .field_group label {
+        width: 100px;
+        display: inline;
+    }
+    form .field_group input {
+        display: inline;
+    }
+    form .controls {
+        display: inline-block;
+        padding: 10px;
+    }
+
+    .field_group.textarea{
+        width: 92%;
+    }
+    .field_group.textarea label {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+    .field_group.textarea textarea {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .field_group.input{
+        width: 92%;
+    }
+    .field_group.input label {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+    .field_group.input input {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .field_group.money{
+        width: 92%;
+    }
+    .field_group.money label {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+    .field_group.money input {
+        float: right;
+        display: inline-block;
+        width: 95%;
+    }
+
+    .field_group.number{
+        width: 92%;
+    }
+    .field_group.number label {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+    .field_group.number input {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .field_group.file label {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+    .field_group.file input {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+
+}

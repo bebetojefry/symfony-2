@@ -1,0 +1,26 @@
+<?php
+
+namespace App\FrontBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class User {
+    
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+    
+    /**
+     * @MongoDB\String
+     */
+    protected $firstname;
+    
+    /**
+     * @MongoDB\String
+     */
+    protected $lastname;
+}

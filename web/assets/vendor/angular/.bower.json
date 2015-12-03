@@ -1,0 +1,17 @@
+{
+  "name": "angular",
+  "version": "1.5.0-build.4395+sha.1537651",
+  "main": "./angular.js",
+  "ignore": [],
+  "dependencies": {},
+  "homepage": "https://github.com/angular/bower-angular",
+  "_release": "1.5.0-build.4395+sha.1537651",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.0-build.4395+sha.1537651",
+    "commit": "826dc9cbaaabdfc66de12125ac30324e29672f56"
+  },
+  "_source": "git://github.com/angular/bower-angular.git",
+  "_target": "1.5",
+  "_originalSource": "angular"
+}

@@ -1,0 +1,66 @@
+login:
+    headline: Bitte einloggen
+    username: Benutzername
+    password: Passwort
+    remember_me: Eingeloggt bleiben
+    messages:
+        locked: Ihr Konto gesperrt haben
+        max_tries: 'Ihr Konto haben, nach 5 Versuchen der letzten 30 Minuten gesperrt'
+        invalid: ungültiger Benutzername oder Passwort
+menu:
+    hello: Hallo
+    products: Produkte
+    consumers: Verbraucher
+    switch_user: Benutzer wechseln
+    switch_user_exit: Zurück zur Admin
+    logout: Abmelden
+user:
+    slno: Sl Nein
+    firstname: Vorname
+    lastname: Nachname
+    gender: Geschlecht
+    phone: Telefon
+product:
+    module_name: Produkte
+    name: Name
+    desc: Beschreibung
+    price: Preis
+    qty: Menge
+    image: Bild
+    private: Privat
+    status: Status
+    submit: Einreichen
+    btn:
+        new: Neues Produkt
+        edit: Bearbeiten
+        delete: Löschen
+    title:
+        new: Neues Produkt
+        edit: Ändern Produkt
+    msg:
+        notfound: Produkt wurde nicht gefunden
+        created: Produkt erfolgreich erstellt
+        updated: Produkt erfolgreich aktualisiert
+        removed: Produkt wurde entfernt
+        deleteConfirm: Sind Sie sure.Do Sie dieses Produkt löschen möchten?
+common:
+    table:
+        actions: Aktionen
+page_title:
+    login: Einloggen
+    products: Produkte
+globals:
+    confirm: Bestätigung
+    yes: Ja
+    no: Nein
+table:
+    lengthMenu: "Display _MENU_ Datensätze pro Seite"
+    zeroRecords: "Im Moment gibt - sorry"
+    info: "Aktuelle Seite _PAGE_ of _PAGES_"
+    infoEmpty: "No records verfügbar"
+    infoFiltered: "(von _MAX_ gesamt gefiltert)"
+    first: "Erste"
+    next: "Nächster"
+    last: "Letzte"
+    previous: "Zurück"
+    search: "Suche"

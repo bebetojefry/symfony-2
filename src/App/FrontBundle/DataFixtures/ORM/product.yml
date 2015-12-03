@@ -1,0 +1,11 @@
+App\FrontBundle\Entity\Product:
+    product_{1..25}:
+        user: @user_pro_*
+        name: <text($maxNbChars = 15)>
+        description: <text($maxNbChars = 50)>
+        price: <randomNumber($nbDigits = 3)>
+        quantity: <randomNumber($nbDigits = 2)>
+        image: <image($dir = '<{products_upload_dir}>', $width = 640, $height = 480)>
+        private: <randomElement($array = array (true, false))>
+        status: <randomElement($array = array (true, false))>
+        

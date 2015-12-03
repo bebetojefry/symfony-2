@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets 'bundles/appfront/css/*' filter='cssrewrite' output='css/compiled/main.css' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        {% block javascript %}
+            {% javascripts 'bundles/appfront/js/*' output='js/compiled/main.js' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+        {% stylesheets '@AppFrontBundle/Resources/public/less/style.less' output='css/compiled/main1.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {#{% image '@AppFrontBundle/Resources/public/images/test.png' output='images/test.png' %}
+            <img width="100" src="{{ asset_url }}" alt="Test" />
+        {% endimage %}
+        <div class="box"></div> #}
+        {% block body %}{% endblock %}
+    </body>
+</html>

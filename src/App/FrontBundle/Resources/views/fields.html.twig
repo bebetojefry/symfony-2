@@ -1,0 +1,72 @@
+{% block text_row %}
+    {% spaceless %}
+        <div class="form-group input">
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
+            <div class="help-block with-errors"></div>
+        </div>
+    {% endspaceless %}
+{% endblock text_row %}
+
+{% block money_row %}
+    {% spaceless %}
+        <div class="form-group money">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            <div class="help-block with-errors"></div>
+        </div>
+    {% endspaceless %}
+{% endblock money_row %}
+
+{% block number_row %}
+    {% spaceless %}
+        <div class="form-group number">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            <div class="help-block with-errors"></div>
+        </div>
+    {% endspaceless %}
+{% endblock number_row %}
+
+{% block file_row %}
+    {% spaceless %}
+        <div class="form-group file">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            <div class="help-block with-errors"></div>
+        </div>
+    {% endspaceless %}
+{% endblock file_row %}
+
+{% block checkbox_row %}
+    {% spaceless %}
+        <div class="form-group checkbox">
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            {{ form_label(form) }}
+            <div class="help-block with-errors"></div>
+        </div>
+    {% endspaceless %}
+{% endblock checkbox_row %}
+
+{% block textarea_row %}
+    {% spaceless %}
+        <div class="form-group textarea">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            <div class="help-block with-errors"></div>
+        </div>
+    {% endspaceless %}
+{% endblock textarea_row %}
+
+{% block submit_row %}
+    {% spaceless %}
+        <div class="form-group submit">
+            {{ form_widget(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock submit_row %}

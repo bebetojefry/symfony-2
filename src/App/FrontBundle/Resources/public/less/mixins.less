@@ -1,0 +1,45 @@
+// parameterized mixin
+.bordered(@color) {
+    border-top: dotted 1px @color;
+    border-bottom: solid 2px @color;
+}
+
+// multiple paramter mixin with selectors
+.boxShadow(@style, @color) when (iscolor(@color)) {
+    -webkit-box-shadow: @style @color;
+    box-shadow:         @style @color;
+    &:hover {
+        -webkit-box-shadow: @style darken(@color, 40%);
+        box-shadow:         @style darken(@color, 40%);
+    }
+}
+
+// mixin with default value
+.boxShadow(@style, @color: 50%) when (isnumber(@color)) {
+    .boxShadow(@style, rgba(0, 0, 0, @alpha));
+}
+
+// arguments
+.boxRadius(@a: 15px; @b: 15px; @c: 15px; @d: 15px) {
+    border-radius: @arguments;
+}
+
+// pattern matching
+.pattern(dark; @color) {
+    color: darken(@color, 10%);
+}
+.pattern(light; @color) {
+    color: lighten(@color, 10%);
+}
+.pattern(@_; @color) {
+    display: block;
+}
+
+// N no.of elements
+.padding(...){
+    padding: @arguments; 
+}
+.spacing(@a, @rest...){
+    margin: @a;
+    padding: @rest;
+}

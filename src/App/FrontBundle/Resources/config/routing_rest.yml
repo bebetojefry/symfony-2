@@ -1,0 +1,13 @@
+consumer : 
+    type: rest
+    resource:     "AppFrontBundle:ConsumerRest"
+    name_prefix:  api_
+professional : 
+    type: rest
+    resource:     "AppFrontBundle:ProfessionalRest"
+    name_prefix:  api_
+product : 
+    type: rest
+    parent: professional
+    resource:     "AppFrontBundle:ProductRest"
+    name_prefix:  api_

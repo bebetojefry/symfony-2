@@ -1,0 +1,75 @@
+parameters:
+    app.front.entity.consumer.class: 'App\FrontBundle\Entity\Consumer'
+    app.front.entity.professional.class: 'App\FrontBundle\Entity\Professional'
+    app.language.class: 'App\FrontBundle\EventListener\LocaleListener'
+    app.user.language.class: 'App\FrontBundle\EventListener\UserLocaleListener'
+    app.voter.product.class: 'App\FrontBundle\Security\Authorization\ProductVoter'
+    app.security.success.handler.class: 'App\FrontBundle\Handler\AuthenticationSuccessHandler'
+    app.security.failure.handler.class: 'App\FrontBundle\Handler\AuthenticationFailureHandler'
+  
+services:
+  app.repository.abstract:
+    abstract: true
+    factory_service: doctrine.orm.entity_manager
+    factory_method: getRepository
+    
+  logout_listener:
+    class: App\FrontBundle\EventListener\LogoutListener
+    
+  app.front.entity.consumer:
+    class: %app.front.entity.consumer.class%
+
+  app.front.entity.professional:
+    class: %app.front.entity.professional.class%
+
+  app.front.locale_listener:
+    class: %app.language.class%
+    arguments: ["%kernel.default_locale%"]
+    tags:
+      - { name: kernel.event_subscriber }
+      
+  app.front.user_locale_listener:
+    class: %app.user.language.class%
+    arguments: ["@session"]
+    tags:
+      - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
+      
+  entity.user.listener:
+    class: App\FrontBundle\EventListener\Entity\UserListener
+    arguments: ['@service_container']
+    tags:
+        - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+        - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+        
+  security.access.post_voter:
+    class: %app.voter.product.class%
+    public: false
+    arguments: ['@service_container']
+    tags:
+        - { name: security.voter }
+        
+  security.authentication.success_handler:
+    class:  %app.security.success.handler.class%
+    arguments:  ["@security.http_utils", {}, "@service_container"]
+    tags:
+        - { name: 'monolog.logger', channel: 'security' }
+        
+  security.authentication.failure_handler:
+    class:  %app.security.failure.handler.class%
+    arguments:  ["@kernel", "@security.http_utils", {}, "@service_container"]
+    tags:
+        - { name: 'monolog.logger', channel: 'security' }
+        
+#  security.authentication.logout_handler:
+#    class:  App\FrontBundle\EventListener\LogoutListener
+#    tags:
+#        - { name: 'monolog.logger', channel: 'security' }
+        
+  api_key_user_provider:
+        class: App\FrontBundle\Entity\UserRepository
+        parent: app.repository.abstract
+        arguments: [ App\FrontBundle\Entity\Consumer ]
+        
+  apikey_authenticator:
+        class:  App\FrontBundle\Security\ApiKeyAuthenticator
+        public: false

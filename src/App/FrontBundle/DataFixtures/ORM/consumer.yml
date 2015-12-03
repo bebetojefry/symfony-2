@@ -1,0 +1,20 @@
+App\FrontBundle\Entity\Consumer:
+    user_1:
+        #__construct: [<@security.encoder_factory>]
+        firstname: Jasper
+        lastname: Prince Kumar
+        gender: 1
+        phone: 9758412579
+        username: jasper
+        password: jasper123
+        locale: en
+        status: true
+    user_{2..10}:
+        firstname: <firstName()>
+        lastname: <lastName()>
+        gender: <randomElement($array = array (1,2))>
+        phone: <phoneNumber()>
+        username: <userName()>
+        password: <password()>
+        locale: <randomElement($array = array ('en','de'))>
+        status: <randomElement($array = array (true, false))>

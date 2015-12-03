@@ -1,0 +1,26 @@
+body {
+    background-image: url('../images/bg.jpg');
+}
+.dql {
+    display: block;
+    float: left;
+    width: 100%;
+}
+.dql form {
+    float: left;
+}
+.dql form textarea {
+    width: 600px;
+    height: 500px;
+}
+.dql form input[type='submit']{
+    display: block;
+}
+.dql .result {
+    float: right;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #999;
+    background-color: #bbb;
+    overflow: scroll;
+}

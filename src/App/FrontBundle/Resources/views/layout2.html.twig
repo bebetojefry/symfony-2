@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %}</title>
+    {% stylesheets 
+        'assets/vendor/bootstrap/dist/css/bootstrap.min.css'
+        'assets/vendor/metisMenu/dist/metisMenu.min.css'
+        'assets/vendor/font-awesome/css/font-awesome.min.css'
+        'assets/vendor/bootstrap3-dialog/src/css/bootstrap-dialog.css'
+        'bundles/appfront/css/*'
+        filter='cssrewrite' filter='uglifycss' output='css/compiled/main.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% stylesheets '@AppFrontBundle/Resources/public/less/style.less' output='css/compiled/app_less.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% stylesheets '@AppFrontBundle/Resources/public/sass/style.scss' output='css/compiled/app_sass.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% block style %}{% endblock %}
+</head>
+<body ng-app="modal">
+    <div id="wrapper" ng-controller="MainCtrl">
+        <div class="modal_container">
+            <modal id="modal" title="[[ modalTitle ]]" visible="showModal">
+                <form id="modal-form" role="form" data-toggle="validator" method="post" action="[[ formAction ]]" ng-controller="MainCtrl" enctype="multipart/form-data">
+                    <div ng-bind-html="modalHtml | unsafe"></div>
+                </form>
+            </modal>
+        </div>
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">{{ 'menu.hello' | trans }} {{ app.user.getUsedName() }} {% if is_granted('ROLE_ADMIN') %} [Admin] {% endif %}</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        {% if is_granted('ROLE_PROFESSIONAL') %}
+                            <li><a href="{{ path('app_front_admin_products') }}"><i class="fa fa-cubes fa-fw"></i>{{ 'menu.products' | trans }}</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('app_front_consumers') }}"><i class="fa fa-users fa-fw"></i>{{ 'menu.consumers' | trans }}</a></li>
+                            <li><a href="{{ path('app_front_admin_products', {'_su': 'bebeto'}) }}"><i class="fa fa-user-md fa-fw"></i>{{ 'menu.switch_user' | trans }}</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                            <li><a href="{{ path('app_front_admin_products', {'_su': '_exit'}) }}"><i class="fa fa-user fa-fw"></i>{{ 'menu.switch_user_exit' | trans }}</a></li>
+                        {% endif %}
+                        <li class="divider"></li>
+                        <li><a href="{{ path('app_front_logout') }}"><i class="fa fa-sign-out fa-fw"></i> {{ 'menu.logout' | trans }}</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="lang_container">
+                        <a {% if app.request.locale == 'en' %}class="active_locale"{% endif %} href="{{ path('set_lang', {_locale: 'en', route: path(app.request.get('_route'), app.request.get('_route_params')) | urlencrypt}) }}"><img src="{{ asset('/bundles/appfront/images/flag_en.png') }}" /></a>
+                        <a {% if app.request.locale == 'de' %}class="active_locale"{% endif %} href="{{ path('set_lang', {_locale: 'de', route: path(app.request.get('_route'), app.request.get('_route_params')) | urlencrypt}) }}"><img src="{{ asset('/bundles/appfront/images/flag_de.png') }}" /></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        {% for type, messages in app.session.flashBag.all %}
+                            {% for message in messages %}
+                                {%if type == 'error'%} {% set type = 'danger' %} {%endif%}
+                                <div class="alert alert-{{ type }}">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>{{ type | capitalize }}!</strong>
+                                    {{ message | trans | raw }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% javascripts
+        'assets/vendor/jquery/jquery.min.js'
+        'assets/vendor/angular/angular.min.js'
+        'assets/vendor/bootstrap/dist/js/bootstrap.min.js'
+        'assets/vendor/bootstrap/js/modal.js'
+        'assets/vendor/bootstrap3-dialog/src/js/bootstrap-dialog.js'
+        'assets/vendor/bootstrap-validator/dist/validator.js'
+        'assets/vendor/metisMenu/dist/metisMenu.min.js'
+        '@AppFrontBundle/Resources/public/js/*'
+        filter='uglifyjs2' output='js/compiled/main.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>var TRANSLATIONS_LOCALE = "{{ app.request.locale }}"</script>
+    <script src="{{ path('funddy_jstranslations', {locale: app.request.locale}) }}"></script>
+    <script src="{{ asset('bundles/funddyjstranslations/js/lib/funddytranslations.js') }}"></script>
+    {% block javascript %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+security:
+
+    encoders:
+        App\FrontBundle\Entity\User: sha512
+        harsh:
+            algorithm: bcrypt
+            cost: 15
+    providers:
+        consumer:
+            entity: { class: 'App\FrontBundle\Entity\Consumer' }
+        professional:
+            entity: { class: 'App\FrontBundle\Entity\Professional' }
+        api_key_user_provider:
+            id: api_key_user_provider
+    acl:
+        connection: default
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        admin:
+            anonymous: ~
+            http_basic: ~
+            provider: professional
+            pattern: ^/
+            host: "%domain_admin%"
+            switch_user: { role: ROLE_ADMIN, parameter: _su } # default { role: ROLE_ALLOWED_TO_SWITCH, parameter: _switch_user }
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path: /products
+                always_use_default_target_path: false
+                use_referer: true
+                csrf_provider: security.csrf.token_manager
+                
+            logout:
+                path:   /logout
+                target: /login
+
+            remember_me:
+                key:      "%secret%"
+                lifetime: 604800 # one week in seconds
+                path: /
+                domain: ~
+  
+        api:  
+            pattern: ^/
+            host: "%domain_api%"
+            stateless: true
+            simple_preauth:
+                authenticator: apikey_authenticator
+            provider: api_key_user_provider
+            
+        default:
+            anonymous: ~
+            http_basic: ~
+            provider: consumer
+            pattern: ^/
+            host: "%domain_consumer%"
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path: /home
+                always_use_default_target_path: false
+                use_referer: true
+                csrf_provider: security.csrf.token_manager
+                
+            logout:
+                path:   /logout
+                target: /login
+
+            remember_me:
+                key:      "%secret%"
+                lifetime: 604800 # one week in seconds
+                path: /
+                domain: ~
+                
+    access_control:
+      - { path: ^/view/([a-zA-Z]+), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/edit/([a-zA-Z]+), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/consumers, roles: ROLE_ADMIN }
+      - { path: ^/products, roles: ROLE_PROFESSIONAL }
+      - { path: ^/products/([0-9]+), roles: ROLE_PROFESSIONAL }
+      - { path: ^/products/remove/([0-9]+), roles: ROLE_PROFESSIONAL }
+      - { path: ^/products/save/([0-9]+), roles: ROLE_PROFESSIONAL }
+      - { path: ^/, roles: ROLE_API_USER, host: api\.symfony\.local$" }

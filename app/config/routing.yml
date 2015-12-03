@@ -1,0 +1,9 @@
+app_front:
+    resource: "@AppFrontBundle/Resources/config/routing.yml"
+    
+jstranslations:
+    resource: "@FunddyJsTranslationsBundle/Resources/config/routing.yml"
+rest : 
+  type : rest 
+  resource : "routing_rest.yml"
+  host:     "%domain_api%"

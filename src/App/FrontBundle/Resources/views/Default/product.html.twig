@@ -1,0 +1,8 @@
+{% if product.image == '' %}
+    <img src="{{ image(rootDir ~ '/../web/images/product_default.png').resize(140, 150) }}" width="140" />
+{% else %}
+    <img src="{{ image(rootDir ~ '/../web/uploads/products/' ~ product.image).resize(140, 150) }}" width="140" />
+{% endif %}
+<a class="remove" href="{{ path('app_front_product_remove', {'id':product.id | urlencrypt}) }}">X</a>
+<span class="price">{{ product.price }}</span>
+<span class="pname"><a href="{{ path('app_front_homepage_edit', {'id':product.id | urlencrypt}) }}">{{ product.name }} ({{ product.quantity }})</a></span>

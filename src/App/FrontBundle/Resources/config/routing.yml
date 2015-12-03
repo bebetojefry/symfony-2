@@ -1,0 +1,81 @@
+app_front_homepage_post_view:
+    path:     /view/{name}
+    defaults: { _controller: AppFrontBundle:Default:view }
+app_front_homepage_post_edit:
+    path:     /edit/{name}
+    defaults: { _controller: AppFrontBundle:Default:edit }
+app_front_admin_homepage:
+    path:     /
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:User:login }
+app_front_admin_products:
+    path:     /products
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Default:index }
+app_front_consumer_login:
+    path:     /
+    host: "%domain_consumer%"
+    defaults: { _controller: AppFrontBundle:User:login }
+app_front_homepage:
+    path:     /home
+    defaults: { _controller: AppFrontBundle:Default:consumer }
+set_lang:
+    path:  /lang/{_locale}/{route}
+    defaults: { _controller: AppFrontBundle:Default:setlang }
+    requirements:
+        _locale: de|en
+app_front_consumers:
+    path:     /consumers
+    defaults: { _controller: AppFrontBundle:Default:consumers }
+app_front_save_product:
+    path:     /products/save/{id}
+    host:     "%domain_admin%"
+    methods:  [POST]
+    schemes:  [HTTP]
+    defaults: { _controller: AppFrontBundle:Default:save, id:null }
+app_front_homepage_edit:
+    path:     /products/{id}
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Default:index, id:null }
+app_front_product_remove:
+    path:     /products/remove/{id}
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:Default:remove, id:null }
+app_front_register:
+    path:     /register
+    defaults: { _controller: AppFrontBundle:User:register }
+app_front_login:
+    path:     /login
+    defaults: { _controller: AppFrontBundle:User:login }
+app_front_login_check:
+    path:     /login_check
+    defaults: { _controller: AppFrontBundle:User:logincheck }
+app_front_logout:
+    path: /logout
+app_front_admin_login:
+    path:     /admin/login
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:User:login }
+app_front_admin_login_check:
+    path:     /admin/login_check
+    host:     "%domain_admin%"
+    defaults: { _controller: AppFrontBundle:User:logincheck }
+app_front_admin_logout:
+    host:     "%domain_admin%"
+    path: /admin/logout
+app_sql_test:
+    path:   /dql
+    defaults:   { _controller: AppFrontBundle:Default:dql }
+    host:   "%domain_admin%"
+app_new_product:
+    path:   /product/new
+    defaults:   { _controller: AppFrontBundle:Product:new }
+    host:   "%domain_admin%"
+app_edit_product:
+    path:   /product/edit/{id}
+    defaults:   { _controller: AppFrontBundle:Product:edit }
+    host:   "%domain_admin%"
+app_delete_product:
+    path:   /product/delete/{id}
+    defaults:   { _controller: AppFrontBundle:Product:delete }
+    host:   "%domain_admin%"

@@ -1,0 +1,69 @@
+login:
+    headline: Please Sign In
+    username: Username
+    password: Password
+    remember_me: Keep me logged in
+    messages:
+        locked: Your account have locked
+        max_tries: Your account have locked after 5 tries on last 30 minutes
+        invalid: invalid username or password
+
+menu:
+    hello: Hello
+    products: Products
+    consumers: Consumers
+    switch_user: Switch User
+    switch_user_exit: Back to admin
+    logout: Logout
+  
+user:
+    slno: Sl No
+    firstname: Firstname
+    lastname: Lastname
+    gender: Gender
+    phone: Phone
+
+product:
+    module_name: Products
+    name: Name
+    desc: Description
+    price: Price
+    qty: Quantity
+    image: image
+    private: Private
+    status: Status
+    submit: Submit
+    btn:
+        new: New Product
+        edit: Edit
+        delete: Delete
+    title:
+        new: New Product
+        edit: Modify Product
+    msg:
+        notfound: Product not found
+        created: Product created successfully
+        updated: Product updated successfully
+        removed: Product removed successfully
+        deleteConfirm: Are you sure.Do you want to delete this product?
+common:
+    table:
+        actions: Actions
+page_title:
+    login: Login
+    products: Products
+globals:
+    confirm: Confirmation
+    yes: Yes
+    no: No
+table:
+    lengthMenu: "Display _MENU_ records per page"
+    zeroRecords: "Nothing found - sorry"
+    info: "Showing page _PAGE_ of _PAGES_"
+    infoEmpty: "No records available"
+    infoFiltered: "(filtered from _MAX_ total records)"
+    first: "First"
+    next: "Next"
+    last: "Last"
+    previous: "Previous"
+    search: "Search"
