@@ -16,12 +16,11 @@ class ProductController extends Controller {
         $form = $this->createForm(new ProductType(), new Product());
         $code = FormHelper::FORM;
         if($request->isMethod('POST')){
-            $form->bind($request);
+            $form->submit($request);
             if($form->isValid()){
                 $product = $form->getData();
                 $product->setUser($this->getUser());
-                $file = $product->getImage();
-                if($file) {
+                if($file = $product->getImage()) {
                     $fileName = md5(uniqid()) . '.' . $file->guessExtension();
                     $file->move($this->getParameter('products_upload_dir'), $fileName);
                     $product->setImage($fileName);
@@ -61,12 +60,11 @@ class ProductController extends Controller {
         $code = FormHelper::FORM;
         
         if($request->isMethod('POST')){
-            $form->bind($request);
+            $form->submit($request);
             if($form->isValid()){
                 $product = $form->getData();
                 $product->setUser($this->getUser());
-                $file = $product->getImage();
-                if($file) {
+                if($file = $product->getImage()) {
                     $fileName = md5(uniqid()) . '.' . $file->guessExtension();
                     $file->move($this->getParameter('products_upload_dir'), $fileName);
                     $product->setImage($fileName);
