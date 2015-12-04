@@ -20,7 +20,6 @@ class ProductController extends Controller {
             $form->handleRequest($request);
             if($form->isValid()){
                 $product = $form->getData();
-                $product->setUser($this->getUser());
                 $dm->persist($product);
                 $dm->flush();
                 $this->get('session')->getFlashBag()->add('success', 'product.msg.created');
@@ -59,7 +58,6 @@ class ProductController extends Controller {
             $form->handleRequest($request);
             if($form->isValid()){
                 $product = $form->getData();
-                $product->setUser($this->getUser());
                 $dm->persist($product);
                 $dm->flush();
                 $this->get('session')->getFlashBag()->add('success', 'product.msg.updated');
