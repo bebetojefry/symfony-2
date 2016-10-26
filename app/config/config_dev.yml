@@ -41,16 +41,16 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
+#swiftmailer:
+#    delivery_address: me@example.com
+
 assetic:
     use_controller: true
-    
+
 hautelook_alice:
     db_drivers:
-        orm: ~      
+        orm: ~
     locale: en_US
     seed: 1
     persist_once: false
     loading_limit: 10
-
-#swiftmailer:
-#    delivery_address: me@example.com

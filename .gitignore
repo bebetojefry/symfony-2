@@ -1,0 +1,22 @@
+# Cache and logs (Symfony2)
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+
+# Parameters
+/app/config/parameters.yml
+
+# Managed by Composer
+/app/bootstrap.php.cache
+/bin/*
+!bin/console
+!bin/symfony_requirements
+/vendor/
+
+# Assets and user uploads
+/web/bundles/
+/composer.lock
+
+# Assets managed by Bower
+/web/assets/vendor/

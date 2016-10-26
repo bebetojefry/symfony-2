@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    translator.class: Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator
+    ranslator.class: Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator
 
 framework:
     #esi:             ~
@@ -90,25 +90,7 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
-propel:
-    dbal:
-        driver:               pdo_mysql
-        user:                 %database_user%
-        password:             %database_password%
-        dsn:                  mysql:host=%database_host%;dbname=%database_name%;charset=UTF8
-        options:              {}
-        attributes:           {}
 
-doctrine_mongodb:
-    connections:
-        default:
-            server: mongodb://localhost:27017
-            options: {}
-    default_database: symfony
-    document_managers:
-        default:
-            auto_mapping: true
-            
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -116,27 +98,13 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# nzo url encryptor configuration
 nzo_url_encryptor:
     secret: "%secret%"
+
 gregwar_image: ~
+
 funddy_js_translations:
     languages: [en,de]
     domains: [messages]
-fos_rest:
-    param_fetcher_listener: true
-    body_listener: true
-    format_listener: true
-    view:
-        view_response_listener: 'force'
-        formats:
-            xml: true
-            json : true
-            html: true
-        templating_formats:
-            html: true
-        force_redirects:
-            html: true
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: twig
-    routing_loader:
-        default_format: json

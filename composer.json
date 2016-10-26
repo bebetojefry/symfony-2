@@ -1,6 +1,5 @@
 {
     "name": "bebeto/symfony",
-    "description": "Symfony App",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -19,22 +18,20 @@
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "leafo/lessphp": "dev-master",
-        "leafo/scssphp": "dev-master",
-        "nzo/url-encryptor-bundle": "1.*",
-        "gedmo/doctrine-extensions": "dev-master",
-        "propel/propel-bundle": "^1.4",
-        "gregwar/image-bundle": "dev-master",
-        "friendsofsymfony/rest-bundle": "^1.7",
+        "leaseweb/api-caller-bundle": "*",
+        "leafo/lessphp": "^0.5.0",
+        "leafo/scssphp": "^0.6.6",
+        "nzo/url-encryptor-bundle": "^3.1",
+        "gedmo/doctrine-extensions": "^2.4",
+        "gregwar/image-bundle": "^2.1",
         "jms/serializer-bundle": "^1.1",
-        "funddy/jstranslations-bundle": "2.0.*",
-        "doctrine/mongodb-odm": "1.0.*@dev",
-        "doctrine/mongodb-odm-bundle": "3.0.*@dev"
+        "funddy/jstranslations-bundle": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
-        "doctrine/doctrine-fixtures-bundle": "~2.2",
-        "hautelook/alice-bundle": "^1.1"
+        "symfony/phpunit-bridge": "~2.7",
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "hautelook/alice-bundle": "^1.3"
     },
     "scripts": {
         "post-install-cmd": [
@@ -55,7 +52,10 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "platform": {
+            "php": "5.5"
+        }
     },
     "extra": {
         "symfony-app-dir": "app",
