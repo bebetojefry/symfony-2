@@ -18,7 +18,7 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-            
+
         admin:
             anonymous: ~
             http_basic: ~
@@ -33,7 +33,7 @@ security:
                 always_use_default_target_path: false
                 use_referer: true
                 csrf_provider: security.csrf.token_manager
-                
+
             logout:
                 path:   /logout
                 target: /login
@@ -43,15 +43,15 @@ security:
                 lifetime: 604800 # one week in seconds
                 path: /
                 domain: "%domain_admin%"
-  
-        api:  
+
+        api:
             pattern: ^/
             host: "%domain_api%"
             stateless: true
             simple_preauth:
                 authenticator: apikey_authenticator
             provider: api_key_user_provider
-            
+
         default:
             anonymous: ~
             http_basic: ~
@@ -65,7 +65,7 @@ security:
                 always_use_default_target_path: false
                 use_referer: true
                 csrf_provider: security.csrf.token_manager
-                
+
             logout:
                 path:   /logout
                 target: /login
@@ -75,7 +75,7 @@ security:
                 lifetime: 604800 # one week in seconds
                 path: /
                 domain: "%domain_consumer%"
-                
+
     access_control:
       - { path: ^/view/([a-zA-Z]+), roles: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/edit/([a-zA-Z]+), roles: IS_AUTHENTICATED_ANONYMOUSLY }

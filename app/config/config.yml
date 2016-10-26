@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    ranslator.class: Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator
+    translator.class: Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator
 
 framework:
     #esi:             ~
@@ -50,10 +50,6 @@ assetic:
     bundles:        [ AppFrontBundle ]
     #java: /usr/bin/java
     filters:
-        uglifyjs2:
-            bin: /usr/local/bin/uglifyjs
-        uglifycss:
-            bin: /usr/local/bin/uglifycss
         cssrewrite: ~
         lessphp:
             apply_to: "\.less$"

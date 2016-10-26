@@ -17,8 +17,12 @@
     "jquery": "1.10.1",
     "jquery.ui": "1.10.4",
     "bootstrap": "3.3.5",
-    "angular" : "1.5",
+    "angular": "1.5",
     "bootstrap3-dialog": "1.34.7",
-    "bootstrap-validator": "0.9.0"
+    "bootstrap-validator": "0.9.0",
+    "metisMenu": "^2.5.2",
+    "font-awesome": "^4.7.0",
+    "datatables": "^1.10.12",
+    "datatables-plugins": "^1.10.12"
   }
 }

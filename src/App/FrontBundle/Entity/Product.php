@@ -18,9 +18,9 @@ class Product
     const NO_ACCESS = 'You dont have access to this product.';
 
     protected static $uploadDir;
-    
+
     protected $temp;
-    
+
     /**
      * @var integer
      *
@@ -282,7 +282,7 @@ class Product
         if(is_string($this->image)){
             $this->temp = $this->image;
         }
-        
+
         $this->image = $image;
 
         return $this;
@@ -320,19 +320,20 @@ class Product
     {
         return $this->private;
     }
-    
+
     public static function setUploadDir($dir)
     {
         self::$uploadDir = $dir;
     }
-    
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
     public function upload()
     {
-        if($file = $this->getImage()) {
+        $file = $this->getImage();
+        if(is_object($file)) {
             if(is_string($this->temp)){
                 $product_image = self::$uploadDir . $this->temp;
                 @unlink($product_image);
@@ -344,7 +345,7 @@ class Product
             $this->setImage($this->temp);
         }
     }
-    
+
     /**
      * @ORM\PostRemove()
      */
@@ -353,5 +354,5 @@ class Product
         $product_image = self::$uploadDir . $this->getImage();
         @unlink($product_image);
     }
-    
+
 }

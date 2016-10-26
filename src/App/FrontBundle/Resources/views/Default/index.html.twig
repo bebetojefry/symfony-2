@@ -3,9 +3,9 @@
 {% block title %}{{ 'page_title.products' | trans }}{% endblock %}
 
 {% block style %}
-    {% stylesheets 
+    {% stylesheets
         'assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css'
-        filter='cssrewrite' filter='uglifycss' output='css/compiled/page.css' %}
+        filter='cssrewrite' output='css/compiled/page.css' %}
         <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
 {% endblock %}
@@ -22,7 +22,7 @@
                     <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered table-hover" id="productsTable">
                             <thead>
-                                <tr>                                   
+                                <tr>
                                     <th>{{ 'product.name' | trans }}</th>
                                     <th>{{ 'product.desc' | trans }}</th>
                                     <th>{{ 'product.price' | trans }}</th>
@@ -55,10 +55,10 @@
 {% endblock%}
 
 {% block javascript %}
-    {% javascripts  
+    {% javascripts
         'assets/vendor/datatables/media/js/jquery.dataTables.min.js'
         'assets/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js'
-        filter='uglifyjs2' output='js/compiled/page.js' %}
+        output='js/compiled/page.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="text/javascript">

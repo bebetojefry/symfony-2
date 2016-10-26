@@ -12,12 +12,12 @@ use App\FrontBundle\Entity\Product;
 class UserListener
 {
     private $container;
-    
+
     public function __construct($container)
     {
         $this->container = $container;
     }
-    
+
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -30,7 +30,7 @@ class UserListener
             $entity->setUser($this->container->get('security.context')->getToken()->getUser());
         }
     }
-    
+
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -49,4 +49,4 @@ class UserListener
             $aclProvider->updateAcl($acl);
         }
     }
-} 
+}

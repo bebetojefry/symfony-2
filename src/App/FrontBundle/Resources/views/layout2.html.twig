@@ -7,13 +7,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>{% block title %}{% endblock %}</title>
-    {% stylesheets 
+    {% stylesheets
         'assets/vendor/bootstrap/dist/css/bootstrap.min.css'
         'assets/vendor/metisMenu/dist/metisMenu.min.css'
         'assets/vendor/font-awesome/css/font-awesome.min.css'
         'assets/vendor/bootstrap3-dialog/src/css/bootstrap-dialog.css'
         'bundles/appfront/css/*'
-        filter='cssrewrite' filter='uglifycss' output='css/compiled/main.css' %}
+        filter='cssrewrite' output='css/compiled/main.css' %}
         <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
     {% stylesheets '@AppFrontBundle/Resources/public/less/style.less' output='css/compiled/app_less.css' %}
@@ -94,7 +94,7 @@
         'assets/vendor/bootstrap-validator/dist/validator.js'
         'assets/vendor/metisMenu/dist/metisMenu.min.js'
         '@AppFrontBundle/Resources/public/js/*'
-        filter='uglifyjs2' output='js/compiled/main.js' %}
+        output='js/compiled/main.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>var TRANSLATIONS_LOCALE = "{{ app.request.locale }}"</script>

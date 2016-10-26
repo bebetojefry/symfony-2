@@ -9,7 +9,7 @@ class OverrideServiceCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $definition = $container->getDefinition('translator.data_collector');
-        $definition->setClass('Funddy\Bundle\JsTranslationsBundle\ReadableTranslator\SymfonyReadableTranslator');
+        $definition = $container->getDefinition('funddy.jstranslations.service.configuredtranslationsextractor');
+        $definition->replaceArgument(0, $container->getDefinition('translator.default'));
     }
 }
