@@ -20,3 +20,5 @@
 
 # Assets managed by Bower
 /web/assets/vendor/
+/web/js/compiled/
+/web/css/compiled/
